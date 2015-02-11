@@ -22,6 +22,16 @@ $(document).ready(function() {
     $(".set-student-sites").click(requestStudentPages);  
     $(".save-student-sites").click(setStudentSites);
     $(".student-sites").on("click", "a", onSiteLinkClick);
+    $(".tab-bar-section").click(toggleReviewHeight);
+  }
+
+  function toggleReviewHeight(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var height = $(".review-doc-iframe").height() > 15 ? 15 : 300;
+    $(".review-doc-iframe").height(height);
+    $(".hsplitter").css("top", height);
+    $(".student-site-iframe").height($(".main-section").height() - height - 4);
   }
 
   function onSiteLinkClick() {
@@ -85,7 +95,6 @@ $(document).ready(function() {
       );
     }
   }
-
   function addHttp(url) {
     if (!/^https?:\/\//i.test(url)) {
         url = 'http://' + url;
