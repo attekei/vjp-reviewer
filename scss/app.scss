@@ -1,0 +1,29 @@
+@import "settings";
+@import "foundation";
+
+.off-canvas-wrap {
+  height: 100%;
+}
+
+.inner-wrap {
+  height: 100%;
+}
+
+.main-section {
+   height: 100%;
+}
+
+ul.off-canvas-list li a {
+  font-size: 0.8rem;
+padding: 0.3rem 0.666rem;
+}
+
+.studentsites-prompt {
+  color: white;
+  padding: 10px;
+  display: none;
+
+  small {
+    font-size: 0.8rem;
+  }
+}

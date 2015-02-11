@@ -1,0 +1,63 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundation</title>
+    <link rel="stylesheet" href="stylesheets/app.css" />
+    <link rel="stylesheet" href="bower_components/jquery.splitter/css/jquery.splitter.css" /
+    <script src="bower_components/modernizr/modernizr.js"></script>
+  </head>
+  <body>
+    <div class="off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+        <nav class="tab-bar">
+          <section class="left-small">
+            <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+          </section>
+
+          <section class="middle tab-bar-section">
+            <h1 class="title">VJP Reviewer</h1>
+          </section>
+        </nav>
+
+        <aside class="left-off-canvas-menu">
+         
+          <section class="studentsites-prompt">
+            <p>List of student sites: <br/><small>(copypaste name and URL from review spreadsheet)</small></p>
+
+
+            <textarea class="studentsites-textarea"></textarea>
+            <button class="save-student-sites button tiny">Set student sites</button>
+          </section>
+
+          <ul class="off-canvas-list">
+            <li><label>Settings</label></li>
+            <li><a class="set-review-doc" href="#">Set review document</a></li>
+            <li><a class="set-student-sites" href="#">Set student sites</a></li>
+            <li><label>Student sites</label></li>
+            <div class="student-sites">
+              <li><a href="#">Not set</a></li>
+            </div>
+          </ul>
+
+        </aside>
+
+        <section class="main-section">
+          <iframe class="review-doc-iframe" srcdoc="<p>No review document set</p>"></iframe>
+          <iframe class="student-site-iframe" srcdoc="<p>No student site open</p>" ></iframe>
+        </section>
+
+      <a class="exit-off-canvas"></a>
+
+      </div>
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/lodash/lodash.min.js"></script>
+    
+    <script src="bower_components/foundation/js/foundation.min.js"></script>
+    <script src="bower_components/jquery.splitter/js/jquery.splitter-0.14.0.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
