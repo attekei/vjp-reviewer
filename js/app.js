@@ -14,7 +14,7 @@ $(document).ready(function() {
   initEvents();
 
   function initPageSplit() {
-    $(".main-section").split({type: 'horizontal'});
+    $(".main-section").split({type: 'horizontal', limit: '10'});
   }
 
   function initEvents() {
@@ -29,6 +29,7 @@ $(document).ready(function() {
       activeStudentPage = $(this).data("article");
       sessionStorage.setItem("activeStudentPage", activeStudentPage);
       showActiveStudentSite();
+      $('.off-canvas-wrap').foundation('offcanvas', 'hide', 'move-right');
     }
     
   }
@@ -44,12 +45,16 @@ $(document).ready(function() {
 
   function requestStudentPages() {
     $(".studentsites-prompt").show();
+
+    if (studentPages) {
+      $(".studentsites-textarea").val(studentPages.join("\n"));  
+    }
   }
 
   function setStudentSites() {
     var promptValue = $(".studentsites-textarea").val();
     if (promptValue) {
-      studentPages = _.chunk(promptValue.split("\n"), 2);
+      studentPages = promptValue.split("\n");
       sessionStorage.setItem("studentPages",JSON.stringify(studentPages));
     }
     $(".studentsites-prompt").hide();
@@ -60,8 +65,8 @@ $(document).ready(function() {
     studentPages = studentPages || [];
     $(".student-sites").html(
       studentPages.map(function(page) {
-        return '<li><a data-article="'+page[0]+'">'+page[1]+'</a></li>';
-      }).join()
+        return '<li><a data-article="'+page+'">'+page.match(/\~(.*?)\//)[1]+'</a></li>';
+      }).join("")
     );
   }
 
@@ -76,7 +81,7 @@ $(document).ready(function() {
     if (activeStudentPage) {
       $(".student-site-iframe").removeAttr("srcdoc").attr("src", addHttp(activeStudentPage));
       $(".title").html(
-        "VJP Reviewer - " + studentPages.filter(function(p) { return p[0] == activeStudentPage; })[0][1]
+        "VJP Reviewer - " + activeStudentPage.match(/\~(.*?)\//)[1]
       );
     }
   }
