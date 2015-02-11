@@ -10,11 +10,18 @@ $(document).ready(function() {
   showReviewDoc();
   listStudentPages();
   showActiveStudentSite();
-  initPageSplit();
   initEvents();
 
+  if(reviewDoc) { initPageSplit(); } else { hideReviewArea(); }
+
   function initPageSplit() {
+    $(".review-doc-iframe").show();
     $(".main-section").split({type: 'horizontal', limit: '10'});
+  }
+
+  function hideReviewArea() {
+    $(".review-doc-iframe").hide();
+    $(".student-site-iframe").css({width: "100%", height: "100%"});
   }
 
   function initEvents() {
@@ -45,9 +52,10 @@ $(document).ready(function() {
   }
 
   function requestReviewDoc() {
-    var promptValue = prompt("Enter url of review document");
-    if (promptValue) {
-      reviewDoc = promptValue;
+    var newValue = prompt("Enter url of review document");
+    if (newValue !== null) {
+      if (!reviewDoc && newValue) initPageSplit();
+      reviewDoc = newValue;
       localStorage.setItem("reviewDoc", reviewDoc);
       showReviewDoc();
     }
@@ -62,9 +70,9 @@ $(document).ready(function() {
   }
 
   function setStudentSites() {
-    var promptValue = $(".studentsites-textarea").val();
-    if (promptValue) {
-      studentPages = promptValue.split("\n");
+    var newValue = $(".studentsites-textarea").val();
+    if (newValue) {
+      studentPages = newValue.split("\n");
       localStorage.setItem("studentPages",JSON.stringify(studentPages));
     }
     $(".studentsites-prompt").hide();
