@@ -3,9 +3,9 @@
 $(document).foundation();
 
 $(document).ready(function() {
-  var reviewDoc = sessionStorage.getItem("reviewDoc");
-  var studentPages = JSON.parse(sessionStorage.getItem("studentPages") || "[]");
-  var activeStudentPage = sessionStorage.getItem("activeStudentPage");
+  var reviewDoc = localStorage.getItem("reviewDoc");
+  var studentPages = JSON.parse(localStorage.getItem("studentPages") || "[]");
+  var activeStudentPage = localStorage.getItem("activeStudentPage");
 
   showReviewDoc();
   listStudentPages();
@@ -37,7 +37,7 @@ $(document).ready(function() {
   function onSiteLinkClick() {
     if ($(this).data("article")) {
       activeStudentPage = $(this).data("article");
-      sessionStorage.setItem("activeStudentPage", activeStudentPage);
+      localStorage.setItem("activeStudentPage", activeStudentPage);
       showActiveStudentSite();
       $('.off-canvas-wrap').foundation('offcanvas', 'hide', 'move-right');
     }
@@ -48,7 +48,7 @@ $(document).ready(function() {
     var promptValue = prompt("Enter url of review document");
     if (promptValue) {
       reviewDoc = promptValue;
-      sessionStorage.setItem("reviewDoc", reviewDoc);
+      localStorage.setItem("reviewDoc", reviewDoc);
       showReviewDoc();
     }
   }
@@ -65,7 +65,7 @@ $(document).ready(function() {
     var promptValue = $(".studentsites-textarea").val();
     if (promptValue) {
       studentPages = promptValue.split("\n");
-      sessionStorage.setItem("studentPages",JSON.stringify(studentPages));
+      localStorage.setItem("studentPages",JSON.stringify(studentPages));
     }
     $(".studentsites-prompt").hide();
     listStudentPages(); 
